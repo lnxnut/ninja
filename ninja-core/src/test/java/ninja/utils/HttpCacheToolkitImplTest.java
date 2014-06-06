@@ -74,13 +74,13 @@ public class HttpCacheToolkitImplTest {
 
         // => older timestamp => modified
         when(context.getHeader(HttpHeaderConstants.IF_MODIFIED_SINCE))
-                .thenReturn("Thu, 01 Jan 1971 00:00:00 GMT");
+                .thenReturn("Thu, 01 Jan 1970 00:00:00 GMT");
         assertTrue(httpCacheToolkit.isModified(Optional.of("etag_xyz_modified"), Optional.of(1000L),
                 context));
 
         // => same timestamp => not modified
         when(context.getHeader(HttpHeaderConstants.IF_MODIFIED_SINCE))
-                .thenReturn("Thu, 01 Jan 1971 00:00:00 GMT");
+                .thenReturn("Thu, 01 Jan 1970 00:00:00 GMT");
         assertFalse(httpCacheToolkit.isModified(Optional.of("etag_xyz_modified"), Optional.of(0L),
                 context));
 
